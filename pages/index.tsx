@@ -1,7 +1,7 @@
 import React from "react";
 import "../src/app/globals.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import api from "../api";
 export default function Login() {
@@ -149,7 +149,7 @@ export default function Login() {
                   </button>
                 </div>
                 <p className="text-gray-800 text-sm !mt-8 text-center">
-                  Don't have an account?{" "}
+                  Don&apos;t have an account?
                   <a
                     href="javascript:void(0);"
                     className="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold"

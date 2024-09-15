@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../src/app/globals.css";
 import api from "../api";
 
@@ -153,7 +153,7 @@ export default function DashBoard() {
                 />
               </div>
               <button
-                onSubmit={(e) => {
+                onSubmit={() => {
                   registerLineMenHandler;
                 }}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
