@@ -1,6 +1,27 @@
 import React from "react";
 import "../src/app/globals.css";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import api from "../api";
 export default function Login() {
+  const router = useRouter();
+  const [loginDetails, setLoginDetails] = useState({
+    username: "",
+    password: "",
+  });
+  const loginHandler = async () => {
+    await api
+      .post("/adminLogin", loginDetails)
+      .then((res) => {
+        console.log(res.data);
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <div className="bg-gray-50 font-[sans-serif]">
@@ -25,6 +46,12 @@ export default function Login() {
                   </label>
                   <div className="relative flex items-center">
                     <input
+                      onChange={(e) => {
+                        setLoginDetails({
+                          ...loginDetails,
+                          username: e.target.value,
+                        });
+                      }}
                       name="username"
                       type="text"
                       required
@@ -58,6 +85,12 @@ export default function Login() {
                   </label>
                   <div className="relative flex items-center">
                     <input
+                      onChange={(e) => {
+                        setLoginDetails({
+                          ...loginDetails,
+                          password: e.target.value,
+                        });
+                      }}
                       name="password"
                       type="password"
                       required
@@ -106,6 +139,9 @@ export default function Login() {
 
                 <div className="!mt-8">
                   <button
+                    onClick={() => {
+                      loginHandler();
+                    }}
                     type="button"
                     className="w-full py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                   >
