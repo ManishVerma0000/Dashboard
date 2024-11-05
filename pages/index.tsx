@@ -10,12 +10,18 @@ export default function Login() {
     username: "",
     password: "",
   });
+  const [role, setRole] = useState("");
   const loginHandler = async () => {
     await api
-      .post("/adminLogin", loginDetails)
+      .post("/login", loginDetails)
       .then((res) => {
-        console.log(res.data);
-        router.push("/dashboard");
+        console.log(res.data.role);
+        setRole(res?.data?.role);
+        if (res?.data?.role === "linemen") {
+          router.push("/admin");
+        } else {
+          router.push("/superadmin");
+        }
       })
       .catch((err) => {
         console.log(err);
